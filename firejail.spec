@@ -1,11 +1,11 @@
 Summary:	A SUID sandbox program
 Name:		firejail
-Version:	0.9.36
+Version:	0.9.40
 Release:	1
 License:	GPL v2+
 Group:		Applications
 Source0:	https://github.com/netblue30/firejail/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	98a5b96118822aae423528cfe22b4a3c
+# Source0-md5:	d5a544de97d72cf14a27cd14aa6ba9dd
 URL:		https://firejail.wordpress.com/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,11 +47,15 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*.inc
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*.net
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*.profile
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*.config
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/login.users
 %attr(4755,root,root) %{_bindir}/firejail
+%attr(755,root,root) %{_bindir}/firecfg
 %attr(755,root,root) %{_bindir}/firemon
+%{_mandir}/man1/firecfg.1*
 %{_mandir}/man1/firejail.1*
 %{_mandir}/man1/firemon.1*
+%{_mandir}/man5/firejail-config.5*
 %{_mandir}/man5/firejail-login.5*
 %{_mandir}/man5/firejail-profile.5*
 %dir %{_libdir}/%{name}
@@ -59,7 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/ftee
 %attr(755,root,root) %{_libdir}/%{name}/libtrace.so
 %attr(755,root,root) %{_libdir}/%{name}/libtracelog.so
+%attr(755,root,root) %{_libdir}/%{name}/firecfg.config
 
 # bash-completions
 %{bash_compdir}/firejail
 %{bash_compdir}/firemon
+%{bash_compdir}/firecfg
