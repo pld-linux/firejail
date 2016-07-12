@@ -17,6 +17,22 @@ process and all its descendants to have their own private view of the
 globally shared kernel resources, such as the network stack, process
 table, and mount table.
 
+%package -n bash-completion-%{name}
+Summary:	bash-completion for firejail
+Summary(pl.UTF-8):	bashowe uzupełnianie nazw dla firejail
+Group:		Applications/Shells
+Requires:	%{name}
+Requires:	bash-completion >= 2.0
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
+
+%description -n bash-completion-%{name}
+bash-completion for firejail.
+
+%description -n bash-completion-%{name} -l pl.UTF-8
+bashowe uzupełnianie nazw dla firejail.
+
 %prep
 %setup -qn %{name}-%{version}
 
@@ -67,7 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/libtracelog.so
 %attr(755,root,root) %{_libdir}/%{name}/firecfg.config
 
-# bash-completions
+%files bash-completion-%{name}
+%defattr(644,root,root,755)
 %{bash_compdir}/firejail
 %{bash_compdir}/firemon
 %{bash_compdir}/firecfg
