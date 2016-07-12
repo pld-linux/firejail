@@ -25,7 +25,9 @@ sed -i -e 's#/usr/lib#%{_libdir}#g' etc/disable-devel.inc
 
 %build
 %configure
-%{__make}
+CFLAGS="%{rpmcflags}" \
+%{__make} \
+	CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
