@@ -23,9 +23,7 @@ Summary(pl.UTF-8):	bashowe uzupełnianie nazw dla firejail
 Group:		Applications/Shells
 Requires:	%{name}
 Requires:	bash-completion >= 2.0
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n bash-completion-%{name}
 bash-completion for firejail.
